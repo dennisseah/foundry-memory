@@ -1,0 +1,49 @@
+{
+  "python.testing.pytestArgs": ["."],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    }
+  },
+  "ruff.organizeImports": true,
+  "ruff.fixAll": true,
+  "ruff.nativeServer": "on",
+  "ruff.path": ["${workspaceFolder}/.venv/bin/ruff"],
+  "ruff.interpreter": ["${workspaceFolder}/.venv/bin/python"],
+  "editor.formatOnSave": true,
+  "python.analysis.autoImportCompletions": true,
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "chat.tools.terminal.autoApprove": {
+    "az": true,
+    "/^ls /Users/dennisseah/git/foundry-memory/\\.venv/lib/python3\\.13/site-packages/agent_framework/ \\| head -40 && echo \"---\" && python -c \"import agent_framework; print\\(\\[n for n in dir\\(agent_framework\\) if 'ontent' in n or 'essage' in n\\]\\)\"$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^source \\.venv/bin/activate && python -c \"import agent_framework; print\\(\\[n for n in dir\\(agent_framework\\) if 'ontent' in n or 'essage' in n or n == 'Role'\\]\\)\"$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^python -c \"import agent_framework\\.foundry as f; print\\(\\[n for n in dir\\(f\\) if 'Chat' in n or 'Client' in n\\]\\)\"$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^python -c \"from agent_framework\\.foundry import FoundryChatClient; help\\(FoundryChatClient\\.__init__\\)\" 2>&1 \\| head -60$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^python -c \"from agent_framework\\._agents import ResponseStream; print\\(\\[n for n in dir\\(ResponseStream\\) if not n\\.startswith\\('_'\\) or n in \\('__aiter__','__iter__','__anext__','__next__'\\)\\]\\)\"$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^python -c \"from agent_framework import AgentResponseUpdate; print\\(\\[n for n in dir\\(AgentResponseUpdate\\) if not n\\.startswith\\('_'\\)\\]\\)\"$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
+  }
+}
