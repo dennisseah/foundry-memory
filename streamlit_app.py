@@ -16,18 +16,18 @@ from foundry_memory.services.mistral_chat_client_service import (
     get_client as get_mistral_client,
 )
 
-PROVIDER_OPTIONS = ["OpenAI", "Mistral"]
-DEFAULT_PROVIDER = "OpenAI"
+PROVIDER_OPTIONS = ["OpenAI (gpt-5-mini)", "Mistral (Mistral-Large-3)"]
+DEFAULT_PROVIDER = "OpenAI (gpt-5-mini)"
 DEFAULT_USER_ID = "jondoe"
 user_id = DEFAULT_USER_ID
-USER_OPTIONS = ["jondoe", "maryann", "alice", "bob"]
+USER_OPTIONS = ["jondoe", "maryann"]
 
 SYSTEM_PROMPT = (
     "You are a helpful assistant that helps to answer questions around Microsoft Azure."
     "Any services mentioned should be treated as part of the Azure ecosystem and "
     "should be interpreted in the context of Azure services and offerings."
 )
-MEM_STORE_NAME = "memory7"
+MEM_STORE_NAME = "memory8"
 
 
 st.set_page_config(page_title="Foundry Memory Chat", page_icon="💬")
@@ -69,7 +69,9 @@ def build_agent(provider: str) -> Agent:
     st.session_state["recalled"] = recalled or []
     previous_memory = st.session_state["recalled"]
 
-    fn_client = get_azure_openai_client if provider == "OpenAI" else get_mistral_client
+    fn_client = (
+        get_azure_openai_client if provider.startswith("OpenAI") else get_mistral_client
+    )
     chat_client = fn_client()
     instructions = SYSTEM_PROMPT
     if previous_memory:
